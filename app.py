@@ -48,11 +48,11 @@ def thanks():
 @events_adapter.server.before_first_request
 def before_first_request():
     if not client_id:
-        print "Can't find Client ID, did you set this env variable?"
+        print("Can't find Client ID, did you set this env variable?")
     if not client_secret:
-        print "Can't find Client Secret, did you set this env variable?"
+        print("Can't find Client Secret, did you set this env variable?")
     if not verification:
-        print "Can't find Verification Token, did you set this env variable?"
+        print("Can't find Verification Token, did you set this env variable?")
 
 if __name__ == '__main__':
     events_adapter.start(debug=True)
