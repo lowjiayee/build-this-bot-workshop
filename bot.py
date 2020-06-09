@@ -27,11 +27,23 @@ class Bot(object):
         Here we'll create a method to exchange the temporary auth code for an
         OAuth token and save it in memory on our Bot object for easier access.
         """
-        pass
+        auth_response = self.client.api_call("oauth.access",
+                client_id=self.oauth['client_id'],
+                client_secret=self.oauth['client_secret'],
+                code=code)
+
+        # save the bot_user_id to check incoming messages mentioning our bots
+        self.bot_user_id = auth_response["bot"]["bot_user_id"]
+        self.client = SlackClient(auth_response["bot"]["bot_access_token"])
 
     def say_hello(self, message):
         """
         Here we'll create a method to respond when a user DM's our bot
         to say hello!
         """
-        pass
+        channel = message["channel"]
+        hello_response = "I want to live! :pray: Please build me <@%s>" % message["user"]
+        self.client.api_call("chat.postMessage",
+                channel=channel,
+                text=hello_response)
+

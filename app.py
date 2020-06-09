@@ -48,7 +48,12 @@ def handle_message(event_data):
     """
     Here we'll build a 'message' event handler using the Slack Events Adapter.
     """
-    pass
+    # Grab message from event payload
+    message = event_data["event"]
+    if "hello" in message.get("text"):
+        mybot.say_hello(message)
+    else:
+        print("This isn't the message we expected: \n%r\n" % message)
 
 
 # Here's some helpful debugging hints for checking that env vars are set
