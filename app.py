@@ -39,6 +39,12 @@ def thanks():
     # Slack will send the temporary authorization code to this route after a
     # user installs our app. Here is where you'll want to grab that code from
     # the request's parameters.
+    code = request.args.get("code")
+
+    auth_response = client.api_call("oauth.access",
+        client_id=client_id,
+        client_secret=client_secret,
+        code=code)
 
     # After that you'll want to exchange that code for an OAuth token using
     # the Slack API endpoint `oauth.access`
