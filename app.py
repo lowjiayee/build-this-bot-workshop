@@ -45,13 +45,26 @@ def respond():
     """
     This route listens for incoming message button actions from Slack.
     """
-    pass
+    slack_payload = json.loads(request.form.get("payload"))
+
+    action_value = slack_payload["actions"][0].get("value")
+
+    return action_handler(action_value)
 
 
 # Let's add an event handler for actions taken from message buttons
 @events_adapter.on("action")
 def action_handler(action_value):
-    pass
+    if action_value == "mac":
+        return make_response(mybot.show_mac(), 200, {
+            "Content-Type": "application/json"
+        })
+    if action_value == "win":
+        return make_response(mybot.show_win(), 200, {
+            "Content-Type": "application/json"
+        })
+
+    return "No action handler found for %s type actions" % action_value
 
 
 @events_adapter.on("message")
