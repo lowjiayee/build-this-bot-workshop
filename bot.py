@@ -39,6 +39,28 @@ class Bot(object):
         channel = message["channel"]
         hello_message = "I want to live! Please build me."
         # Add message attachments here!
+        message_attachments = [
+            {
+                "pretext": "I'll tell you how to set up your system. :robot_face:",
+                "text": "What operating system are you using?",
+                "callback_id": "os",
+                "attachment_type": "default",
+                "actions": [
+                    {
+                        "name": "mac",
+                        "text": ":apple: Mac",
+                        "type": "button",
+                        "value": "mac",
+                    },
+                    {
+                        "name": "windows",
+                        "text": ":fax: Windows",
+                        "type": "button",
+                        "value": "win",
+                    }
+                ]
+            }
+        ]
 
         self.client.api_call("chat.postMessage",
                              channel=channel,
