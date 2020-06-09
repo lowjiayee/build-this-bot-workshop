@@ -69,7 +69,7 @@ def handle_message(event_data):
     if "hello" in message.get('text'):
         mybot.say_hello(message)
     else:
-        print "This isn't the message we expected: \n%r\n" % message
+        print("This isn't the message we expected: \n%r\n" % message)
 
 
 # Here's some helpful debugging hints for checking that env vars are set
@@ -79,11 +79,11 @@ def before_first_request():
     client_secret = mybot.oauth.get("client_secret")
     verification = mybot.verification
     if not client_id:
-        print "Can't find Client ID, did you set this env variable?"
+        print("Can't find Client ID, did you set this env variable?")
     if not client_secret:
-        print "Can't find Client Secret, did you set this env variable?"
+        print("Can't find Client Secret, did you set this env variable?")
     if not verification:
-        print "Can't find Verification Token, did you set this env variable?"
+        print("Can't find Verification Token, did you set this env variable?")
 
 
 if __name__ == '__main__':
