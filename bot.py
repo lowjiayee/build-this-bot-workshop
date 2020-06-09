@@ -73,7 +73,37 @@ class Bot(object):
         message button. It should return a message with system setup
         instructions for building this bot on a Windows operating system.
         """
-        pass
+        message = {
+            "as_user": False,
+            "replace_original": False,
+            "response_type": "ephemeral",
+            "text": ":fax: *Windows OS*:\n Here's some helpful tips for "
+            "setting up the requirements you'll need for this workshop:",
+            "attachments": [{
+                "mrkdwn_in": ["text", "pretext"],
+                "text": "*Python 2.7 and Pip*:\n_Check to see if you have "
+                "Python on your system:_\n```python --version```\n_Download "
+            "link:_\nhttps://www.python.org/ftp/python/2.7.12/python-2.7.1"
+            "2.msi\n_Make sure to tick  `Add Python.exe to PATH` when "
+            "installing Python for Windows._\n_If that doesn't add it to "
+            "the path after installation, run this command:_\n```c:\pyth"
+            "on27\\tools\scripts\win_add2path.py```\n_After downloading "
+            "Python, you must upgrade your version of Pip:_\n```python "
+            "-m pip install -U pip```\n*Virtualenv*:\n_Check to see if "
+            "you have virtualenv on your system and install it if you "
+            "don't have it:_\n```virtualenv --version\npip install "
+            "virtualenv```\n*Ngrok:*\n_Check to see if you have ngrok on "
+            "your system:_\n```ngrok --version```\n_Download "
+            "Link:_\nhttps://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable"
+            "-darwin-amd64.zip\nTo unzip on Windows, just double click "
+            "ngrok.zip",
+            "footer": "Slack API: Build this Bot Workshop",
+            "footer_icon": "https://platform.slack-edge.com/img/default"
+            "_application_icon.png"
+            }]
+        }
+
+        return json.dumps(message)
 
     def show_mac(self):
         """
